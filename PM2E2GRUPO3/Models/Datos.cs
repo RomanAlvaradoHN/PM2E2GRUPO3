@@ -8,7 +8,8 @@ namespace PM2E2GRUPO3.Models
 {
     public class Datos{
         private List<string> invalidData = new List<string>();
-        private byte[] firma;
+        //private byte[] firma;
+        private byte[] video;
         private byte[] audio;
         private double latitud;
         private double longitud;
@@ -17,8 +18,10 @@ namespace PM2E2GRUPO3.Models
 
 
 
-        public Datos(byte[] firma, byte[] audio, double latitud, double longitud) {
-            this.Firma = firma;
+        //public Datos(byte[] firma, byte[] audio, double latitud, double longitud) {
+        public Datos(byte[] video, byte[] audio, double latitud, double longitud) {
+            //this.Firma = firma;
+            this.Video = video;
             this.Audio = audio;
             this.Latitud = latitud;
             this.Longitud = longitud;
@@ -41,17 +44,35 @@ namespace PM2E2GRUPO3.Models
 
 
 
-        public byte[] Firma {
-            get { return this.firma; }
+        //public byte[] Firma {
+        //    get { return this.firma; }
+
+        //    set {
+        //        if (value != null && value.Length > 0) {
+        //            this.firma = value;
+        //        } else {
+        //            this.invalidData.Add("No ha dibujado la firma.");
+        //        }
+        //    }
+        //}
+
+
+
+
+        public byte[] Video {
+            get { return this.video; }
 
             set {
                 if (value != null && value.Length > 0) {
-                    this.firma = value;
+                    this.video = value;
                 } else {
-                    this.invalidData.Add("No ha dibujado la firma.");
+                    this.invalidData.Add("No hay grabacion de video.");
                 }
             }
         }
+
+
+
 
 
 

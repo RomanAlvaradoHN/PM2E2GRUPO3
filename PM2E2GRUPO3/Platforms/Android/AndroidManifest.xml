@@ -22,6 +22,28 @@
 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+
+
+
+	<!--Capturar foto y video: https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device-media/picker?view=net-maui-7.0&tabs=android-->
+	<uses-permission android:name="android.permission.CAMERA" />
+	<!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />-->
+	<!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />-->
+	<!-- Required only if your app needs to access images or photos that other apps created -->
+	<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+	<!-- Required only if your app needs to access videos that other apps created -->
+	<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+	<!-- Required only if your app needs to access audio files that other apps created -->
+	<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+	<queries>
+		<intent>
+			<action android:name="android.media.action.IMAGE_CAPTURE" />
+		</intent>
+	</queries>
+	
 	
 	
 	

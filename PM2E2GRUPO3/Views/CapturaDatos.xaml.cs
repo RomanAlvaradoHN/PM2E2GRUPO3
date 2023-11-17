@@ -1,7 +1,9 @@
+using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Devices.Sensors;
 using Plugin.Maui.Audio;
 using PM2E2GRUPO3.Models;
+
 
 namespace PM2E2GRUPO3.Views;
 
@@ -16,6 +18,7 @@ public partial class CapturaDatos : ContentPage
 
     private Location locacion = new Location();
     private byte[] firmaImageArray;
+    private byte[] videoArray;
     private byte[] audioArray;
     
     
@@ -50,7 +53,17 @@ public partial class CapturaDatos : ContentPage
 
 
 
-
+    /*
+     <Frame VerticalOptions="FillAndExpand" Padding="0">
+            <toolkit:DrawingView x:Name="signPad"
+            DrawingLineCompleted="OnPadSignedEvent"
+            BackgroundColor="white"
+            IsMultiLineModeEnabled="True"
+            LineColor="BlueViolet"
+            LineWidth="5"/>
+        </Frame>
+     
+     
     public async void OnPadSignedEvent(object sender, EventArgs args) {
         //Guardar el byte[] de la imagen de la firma:
         using (MemoryStream ms = new MemoryStream()) {
@@ -60,6 +73,48 @@ public partial class CapturaDatos : ContentPage
         }
 
         await ObtenerCoordenadas();
+    }
+    */
+
+
+
+    public async void OnBtnVideoClicked(object sender, EventArgs args) {
+        await TakeVideo();
+        await ObtenerCoordenadas();
+    }
+
+
+
+
+
+    public async Task TakeVideo() {
+        if (MediaPicker.Default.IsCaptureSupported) {
+            FileResult video = await MediaPicker.Default.CaptureVideoAsync();
+
+            if (video != null) {
+                try {
+
+                    using (MemoryStream ms = new MemoryStream()) {
+                        Stream st = await video.OpenReadAsync();
+                        await st.CopyToAsync(ms);
+                        videoArray = ms.ToArray();
+                    }
+
+
+                    // save the file into local storage
+                    string localFilePath = Path.Combine(FileSystem.CacheDirectory, video.FileName);
+                    using (FileStream videoFile = File.OpenWrite(localFilePath)) {
+                        Stream st = new MemoryStream(videoArray);
+                        await st.CopyToAsync(videoFile);
+                    }
+
+                    videoElement.Source = MediaSource.FromFile(localFilePath);
+
+                } catch (Exception ex) {
+                    await DisplayAlert("Atención", ex.Message, "Aceptar");
+                }
+            }
+        }
     }
 
 
@@ -146,15 +201,22 @@ public partial class CapturaDatos : ContentPage
     public async void OnBtnGuardarClicked(object sender, EventArgs args) {
         try {
 
+            //Datos datos = new Datos(
+            //    firmaImageArray,
+            //    audioArray,
+            //    locacion.Latitude,
+            //    locacion.Longitude
+            //);
+
             Datos datos = new Datos(
-                firmaImageArray,
+                videoArray,
                 audioArray,
                 locacion.Latitude,
                 locacion.Longitude
             );
 
 
-            if(!datos.GetDatosInvalidos().Any()) {
+            if (!datos.GetDatosInvalidos().Any()) {
                 Console.WriteLine("#############################");
                 Console.WriteLine("Guardando datos");
                 Console.WriteLine("#############################");
@@ -241,11 +303,19 @@ public partial class CapturaDatos : ContentPage
     }
 
 
+    public void ContentPage_Unloaded(object? sender, EventArgs e) {
+        videoElement.Handler?.DisconnectHandler();
+    }
+
 
     private async void LimpiarCampos() {
-        firmaImageArray = new byte[0];
+        //firmaImageArray = new byte[0];
+        videoArray = new byte[0];
         audioArray = new byte[0];
-        signPad.Clear();
+        //signPad.Clear();
+
+        videoElement.Source = null;
+
         if (audioRecorder.IsRecording) {
             await audioRecorder.StopAsync();
         }
