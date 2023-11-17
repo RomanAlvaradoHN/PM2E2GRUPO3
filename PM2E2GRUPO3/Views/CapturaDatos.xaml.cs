@@ -155,12 +155,20 @@ public partial class CapturaDatos : ContentPage
 
 
             if(!datos.GetDatosInvalidos().Any()) {
+                Console.WriteLine("#############################");
                 Console.WriteLine("Guardando datos");
+                Console.WriteLine("#############################");
+
+                await DisplayAlert("Guardar", "Datos guardados", "acepar");
                 LimpiarCampos();
+
+            } else {
+                string msj = string.Join("\n", datos.GetDatosInvalidos());
+                await DisplayAlert("Datos Invalidos:", msj, "acepar");
             }
 
 
-        }catch(Exception ex) {
+        } catch(Exception ex) {
             await DisplayAlert("Guardar", ex.Message, "Aceptar");
         }
     }
