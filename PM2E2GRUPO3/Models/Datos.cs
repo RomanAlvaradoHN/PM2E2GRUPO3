@@ -17,6 +17,28 @@ namespace PM2E2GRUPO3.Models
 
 
 
+        public Datos(byte[] firma, byte[] audio, double latitud, double longitud) {
+            this.Firma = firma;
+            this.Audio = audio;
+            this.Latitud = latitud;
+            this.Longitud = longitud;
+        }
+
+
+
+        public List<string> GetDatosInvalidos() {
+            return this.invalidData;
+        }
+
+
+
+
+
+
+
+
+
+
 
 
         public byte[] Firma {
@@ -26,7 +48,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.firma = value;
                 } else {
-                    this.invalidData.Add("No ha dibujado la firma");
+                    this.invalidData.Add("No ha dibujado la firma.");
                 }
             }
         }
@@ -42,7 +64,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.audio = value;
                 } else {
-                    this.invalidData.Add("No hay grabacion de audio");
+                    this.invalidData.Add("No hay grabacion de audio.");
                 }
             }
         }
@@ -55,12 +77,40 @@ namespace PM2E2GRUPO3.Models
 
 
 
+        public double Latitud {
+            get { return this.latitud; }
+
+            set {
+                if (value != 0.0) {
+                    this.latitud = value;
+                } else {
+                    this.invalidData.Add("No se genero valor de latitud.");
+                }
+            }
+        }
 
 
 
 
 
 
+
+
+
+        public double Longitud {
+            get { return this.longitud; }
+
+            set {
+                if (value != 0.0) {
+                    this.longitud = value;
+                } else {
+                    this.invalidData.Add("No se genero valor de longitud."); ;
+                }
+            }
+        }
+
+
+        
 
     }
 }

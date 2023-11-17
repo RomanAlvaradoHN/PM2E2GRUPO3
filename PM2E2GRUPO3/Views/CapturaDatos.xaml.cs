@@ -1,6 +1,7 @@
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Devices.Sensors;
 using Plugin.Maui.Audio;
+using PM2E2GRUPO3.Models;
 
 namespace PM2E2GRUPO3.Views;
 
@@ -36,24 +37,9 @@ public partial class CapturaDatos : ContentPage
 
 
 
-    protected override async void OnAppearing() {
+    protected override void OnAppearing() {
         base.OnAppearing();
-
-        //Validar permisos para usar microfono
-        permisoMicrofono = await Permissions.CheckStatusAsync<Permissions.Microphone>();
-        if (permisoMicrofono == PermissionStatus.Granted) {
-            return;
-        } else {
-            permisoMicrofono = await Permissions.RequestAsync<Permissions.Microphone>();
-        }
-
-        //Validar permisos para usar gps
-        permisoGPS = await Permissions.CheckStatusAsync<Permissions.Microphone>();
-        if (permisoGPS == PermissionStatus.Granted) {
-            return;
-        } else {
-            permisoGPS = await Permissions.RequestAsync<Permissions.Microphone>();
-        }
+        ValidarPermisos();
     }
 
 
@@ -86,25 +72,30 @@ public partial class CapturaDatos : ContentPage
     //Geolocacion=========================================================================================================
     //https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/geolocation?view=net-maui-7.0&tabs=android
     private async Task ObtenerCoordenadas() {
-        try {
-            _isCheckingLocation = true;
-            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
-            _cancelTokenSource = new CancellationTokenSource();
+        //if (permisoGPS == PermissionStatus.Granted) {
 
-            locacion = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
-            if (locacion != null) {
-                txtLatitud.Text = $"{locacion.Latitude}";
-                txtLongitud.Text = $"{locacion.Longitude}";
+            try {
+                _isCheckingLocation = true;
+                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
+                _cancelTokenSource = new CancellationTokenSource();
+
+                locacion = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
+                if (locacion != null) {
+                    txtLatitud.Text = $"{locacion.Latitude}";
+                    txtLongitud.Text = $"{locacion.Longitude}";
+                }
+
+            } catch (Exception ex) {
+                await DisplayAlert("Atencion", ex.Message, "Aceptar");
+
+            } finally {
+                _isCheckingLocation = false;
             }
 
-        }
-
-        catch (Exception ex) {
-            await DisplayAlert("Atencion", ex.Message, "Aceptar");
-
-        } finally {
-            _isCheckingLocation = false;
-        }
+        //} else {
+        //    bool resp = await DisplayAlert("Datos", "No se concedieron permisos para usar GPS, desea otorgarlos?", "Si", "No");
+        //    if (resp) { ValidarPermisos(); }
+        //}
     }
     public void CancelRequest() {
         if (_isCheckingLocation && _cancelTokenSource != null && _cancelTokenSource.IsCancellationRequested == false) {
@@ -139,7 +130,8 @@ public partial class CapturaDatos : ContentPage
                 SetButtonRecordedStyle();
             }
         } else {
-            await DisplayAlert("Grabar", "No se concedieron permisos para grabar", "Aceptar");
+            bool resp = await DisplayAlert("Grabar", "No se concedieron permisos para grabar, desea otorgarlos?", "Si", "No");
+            if (resp) { ValidarPermisos();}
         }
     }
 
@@ -147,6 +139,31 @@ public partial class CapturaDatos : ContentPage
 
 
 
+
+
+
+
+    public async void OnBtnGuardarClicked(object sender, EventArgs args) {
+        try {
+
+            Datos datos = new Datos(
+                firmaImageArray,
+                audioArray,
+                locacion.Latitude,
+                locacion.Longitude
+            );
+
+
+            if(!datos.GetDatosInvalidos().Any()) {
+                Console.WriteLine("Guardando datos");
+                LimpiarCampos();
+            }
+
+
+        }catch(Exception ex) {
+            await DisplayAlert("Guardar", ex.Message, "Aceptar");
+        }
+    }
 
 
 
@@ -159,6 +176,30 @@ public partial class CapturaDatos : ContentPage
     }
 
 
+
+
+
+
+
+
+    private async void ValidarPermisos() {
+        //Validar permisos para usar microfono
+        permisoMicrofono = await Permissions.CheckStatusAsync<Permissions.Microphone>();
+        if (permisoMicrofono == PermissionStatus.Granted) {
+            return;
+        } else {
+            permisoMicrofono = await Permissions.RequestAsync<Permissions.Microphone>();
+        }
+
+        //Validar permisos para usar gps
+        //permisoGPS = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+        //if (permisoGPS == PermissionStatus.Granted) {
+        //    return;
+        //} else {
+        //    permisoGPS = await Permissions.RequestAsync<Permissions.LocationAlways>();
+        //}
+
+    }
 
 
 

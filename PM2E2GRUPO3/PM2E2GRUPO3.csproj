@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\done_ico.svg" />
 	  <None Remove="Resources\Images\guardar_ico.svg" />
 	  <None Remove="Resources\Images\lista_ico.svg" />
 	  <None Remove="Resources\Images\microphone_ico.svg" />

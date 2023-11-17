@@ -37,16 +37,19 @@
             </StackLayout>
         </Frame>
 
-        <Frame CornerRadius="10" Padding="0">
-            <Button x:Name="btnBtnStartRecording"
-                    ImageSource="microphone_ico.png"
-                    BorderWidth="5"
-                    BorderColor="YellowGreen"
-                    BackgroundColor="Black"
-                    Clicked="OnBtnStartRecordingClicked"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
-                    ContentLayout="Top"/>
+        <Frame CornerRadius="10" Padding="5">
+            <StackLayout>
+                <Label Text="Audio:"/>
+                <Button x:Name="btnBtnStartRecording"
+                        ImageSource="microphone_ico.png"
+                        BorderWidth="5"
+                        BorderColor="YellowGreen"
+                        BackgroundColor="Black"
+                        Clicked="OnBtnStartRecordingClicked"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        ContentLayout="Top"/>
+            </StackLayout>
         </Frame>
 
 

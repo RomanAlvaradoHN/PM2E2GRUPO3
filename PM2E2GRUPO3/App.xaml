@@ -9,6 +9,42 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Green" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="YellowGreen"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="20" />
+            </Style>
+
+            <Style TargetType="ImageButton">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="20" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Green"/>
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Green"/>
+            </Style>
+            
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
