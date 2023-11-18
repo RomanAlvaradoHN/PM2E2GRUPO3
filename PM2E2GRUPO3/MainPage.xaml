@@ -1,41 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Unloaded="ContentPage_Unloaded"
              x:Class="PM2E2GRUPO3.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="15,15,0,0">
+                <Label Margin="45,0,0,0"  Text="Nueva Ubicación" HorizontalTextAlignment="Center" TextColor="Green" FontAttributes="Bold" FontSize="15"/>
+                <Label Text=" | Ubicaciones Salvadas" HorizontalTextAlignment="Center" TextColor="LightGray" FontAttributes="Bold" FontSize="15"/>
+            </StackLayout>
+            <Image Source="uth.png" HeightRequest="100" WidthRequest="150" HorizontalOptions="Center" Margin="0,0,0,8"/>
+            
+            <toolkit:MediaElement x:Name="videoElement"
+                ShouldShowPlaybackControls="True"
+                Aspect="AspectFill"
+                HeightRequest="225"/>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            <Button x:Name="btnVideo" 
+                    Text="Grabar Video" 
+                    Clicked="OnBtnVideoClicked" 
+                    Margin="80,15,80,7" 
+                    BackgroundColor="#8bc34a" 
+                    CornerRadius="10" 
+                    TextColor="Black"/>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+            <Label Text="Latitud Actual:" FontSize="Subtitle" Margin="15,15,10,5" TextColor="Black" FontAttributes="Bold"/>
+            <Frame 
+                Margin="15,5,15,10" 
+                Padding="0">
+                <Entry Keyboard="Text" 
+                   x:Name="txtLatitud"
+                   MaxLength="100" 
+                    IsEnabled="False"
+                   FontSize="14"
+                   BackgroundColor="WhiteSmoke"/>
+            </Frame>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <Label Text="Longitud Actual:" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Black" FontAttributes="Bold"/>
+            <Frame 
+                Margin="15,5,15,10" 
+                Padding="0">
+                <Entry Keyboard="Text" 
+                    x:Name="txtLongitud"
+                    MaxLength="100" 
+                    IsEnabled="False"
+                    FontSize="14"
+                    BackgroundColor="WhiteSmoke"/>
+            </Frame>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            <Label Text="Describa la Ubicación" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Green" FontAttributes="Bold"/>
 
-        </VerticalStackLayout>
+            <StackLayout>
+                <Label Text="Grabar nota de Voz:" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Black" FontAttributes="Bold"/>
+                <Button x:Name="btnBtnStartRecording"
+                    ImageSource="microfonoa.png"
+                    BorderWidth="5"
+                    Margin="100,15,100,7" 
+                    BackgroundColor="#8bc34a" 
+                    CornerRadius="10"
+                    BorderColor="#8bc34a"
+                    Clicked="OnBtnStartRecordingClicked"/>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="7,30,7,30">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Button Text="Salvar Ubicación" 
+                            x:Name="salvarU" 
+                            BackgroundColor="#FFD230" 
+                            CornerRadius="10" 
+                            TextColor="Black"  
+                            WidthRequest="290"
+                            Clicked="OnBtnGuardarClicked" />
+
+                    <Button Text="Ubicaciones Salvadas" 
+                            x:Name="ListaU" 
+                            BackgroundColor="#FFD230" 
+                            CornerRadius="10" 
+                            TextColor="Black" 
+                            WidthRequest="290"
+                            Clicked="OnBtnListaClicked" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

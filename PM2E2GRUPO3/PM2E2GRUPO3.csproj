@@ -49,13 +49,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\donea.png" />
 	  <None Remove="Resources\Images\done_ico.svg" />
 	  <None Remove="Resources\Images\guardar_ico.svg" />
 	  <None Remove="Resources\Images\lista_ico.svg" />
+	  <None Remove="Resources\Images\microfonoa.png" />
+	  <None Remove="Resources\Images\microfonoam.png" />
 	  <None Remove="Resources\Images\microphone_ico.svg" />
+	  <None Remove="Resources\Images\movie.png" />
 	  <None Remove="Resources\Images\play_ico.svg" />
 	  <None Remove="Resources\Images\restart_ico.svg" />
 	  <None Remove="Resources\Images\stop_ico.svg" />
+	  <None Remove="Resources\Images\uth.png" />
 	</ItemGroup>
 
 	<ItemGroup>

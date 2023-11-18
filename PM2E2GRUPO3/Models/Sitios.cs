@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PM2E2GRUPO3.Models
 {
-    public class Datos{
+    public class Sitios{
         private List<string> invalidData = new List<string>();
         //private byte[] firma;
         private byte[] video;
@@ -14,12 +14,8 @@ namespace PM2E2GRUPO3.Models
         private double latitud;
         private double longitud;
 
-
-
-
-
         //public Datos(byte[] firma, byte[] audio, double latitud, double longitud) {
-        public Datos(byte[] video, byte[] audio, double latitud, double longitud) {
+        public Sitios(byte[] video, byte[] audio, double latitud, double longitud) {
             //this.Firma = firma;
             this.Video = video;
             this.Audio = audio;
@@ -27,22 +23,9 @@ namespace PM2E2GRUPO3.Models
             this.Longitud = longitud;
         }
 
-
-
         public List<string> GetDatosInvalidos() {
             return this.invalidData;
         }
-
-
-
-
-
-
-
-
-
-
-
 
         //public byte[] Firma {
         //    get { return this.firma; }
@@ -56,9 +39,6 @@ namespace PM2E2GRUPO3.Models
         //    }
         //}
 
-
-
-
         public byte[] Video {
             get { return this.video; }
 
@@ -66,17 +46,10 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.video = value;
                 } else {
-                    this.invalidData.Add("No hay grabacion de video.");
+                    this.invalidData.Add("¡Atención! No hay grabación de vídeo.");
                 }
             }
         }
-
-
-
-
-
-
-
 
         public byte[] Audio {
             get { return this.audio; }
@@ -85,18 +58,10 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.audio = value;
                 } else {
-                    this.invalidData.Add("No hay grabacion de audio.");
+                    this.invalidData.Add("¡Atención! No hay grabación de audio.");
                 }
             }
         }
-
-
-
-
-
-
-
-
 
         public double Latitud {
             get { return this.latitud; }
@@ -105,18 +70,10 @@ namespace PM2E2GRUPO3.Models
                 if (value != 0.0) {
                     this.latitud = value;
                 } else {
-                    this.invalidData.Add("No se genero valor de latitud.");
+                    this.invalidData.Add("¡Atención! No se generó valor de latitud.");
                 }
             }
         }
-
-
-
-
-
-
-
-
 
         public double Longitud {
             get { return this.longitud; }
@@ -125,13 +82,9 @@ namespace PM2E2GRUPO3.Models
                 if (value != 0.0) {
                     this.longitud = value;
                 } else {
-                    this.invalidData.Add("No se genero valor de longitud."); ;
+                    this.invalidData.Add("¡Atención! No se generó valor de longitud."); ;
                 }
             }
         }
-
-
-        
-
     }
 }
