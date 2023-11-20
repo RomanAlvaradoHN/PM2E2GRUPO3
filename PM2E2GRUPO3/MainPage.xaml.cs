@@ -109,8 +109,13 @@ namespace PM2E2GRUPO3 {
                 );
 
                 if (!datos.GetDatosInvalidos().Any()){
-                    await api.Insert(datos);
-                    LimpiarCampos();
+                    if(await api.Insert(datos)) {
+                        await DisplayAlert("Guardar", "Datos guardados.", "Aceptar");
+                        LimpiarCampos();
+                    } else {
+                        await DisplayAlert("Guardar", "Algo salió mal, los datos no se pudieron guardar.", "Aceptar");
+                    }
+                    
                 
                 }else {
                     string msj = string.Join("\n", datos.GetDatosInvalidos());

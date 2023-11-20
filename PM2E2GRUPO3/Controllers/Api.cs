@@ -86,7 +86,7 @@ namespace PM2E2GRUPO3.Controllers {
 
 
 
-        public async Task Insert(Sitios item) {
+        public async Task<bool> Insert(Sitios item) {
             Uri uri = new Uri("http://www.grupo3.somee.com/api/Persona");
 
             try {
@@ -98,10 +98,14 @@ namespace PM2E2GRUPO3.Controllers {
 
                 if (response.IsSuccessStatusCode) {
                     Console.WriteLine("#################################\n" + "Datos Guardados" + "\n#################################");
+                    return true;
+                } else {
+                    return false;
                 }
                     
             } catch (Exception ex) {
                 Console.WriteLine("#################################\n" + ex.Message + "\n#################################");
+                return false;
             }
         }
 
@@ -109,7 +113,7 @@ namespace PM2E2GRUPO3.Controllers {
 
 
 
-        public async Task Update(Sitios item) {
+        public async Task<bool> Update(Sitios item) {
             Uri uri = new Uri("http://www.grupo3.somee.com/api/Persona");
 
             try {
@@ -121,9 +125,14 @@ namespace PM2E2GRUPO3.Controllers {
 
                 if (response.IsSuccessStatusCode) {
                     Console.WriteLine("#################################\n" + "Datos Guardados" + "\n#################################");
+                    return true;
+                } else {
+                    return false;
                 }
+
             } catch (Exception ex) {
                 Console.WriteLine("#################################\n" + ex.Message + "\n#################################");
+                return false;
             }
         }
 
@@ -132,14 +141,19 @@ namespace PM2E2GRUPO3.Controllers {
 
 
 
-        public async Task Delete(int id) {
+        public async Task<bool> Delete(int id) {
             Uri uri = new Uri("http://www.grupo3.somee.com/api/Persona/" + id.ToString());
             try {
                 HttpResponseMessage response = await _client.DeleteAsync(uri);
-                if (response.IsSuccessStatusCode)
-                    Console.WriteLine("#################################\n" + "Datos Eliminados" + "\n#################################");
+                if (response.IsSuccessStatusCode) {
+                    Console.WriteLine("#################################\n" + "Datos Guardados" + "\n#################################");
+                    return true;
+                } else {
+                    return false;
+                }
             } catch (Exception ex) {
                 Console.WriteLine("#################################\n" + ex.Message + "\n#################################");
+                return false;
             }
         }
 
