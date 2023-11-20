@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Plugin.Maui.Audio;
 using Microsoft.Extensions.Logging;
-using PM2E2GRUPO3.Views;
 
 namespace PM2E2GRUPO3 {
     public static class MauiProgram {
@@ -18,7 +17,7 @@ namespace PM2E2GRUPO3 {
             builder.UseMauiCommunityToolkitMediaElement();
 
             builder.Services.AddSingleton(AudioManager.Current);
-            builder.Services.AddTransient<CapturaDatos>();
+            //builder.Services.AddTransient<Views.CapturaDatos>();
 
 #if DEBUG
         builder.Logging.AddDebug();

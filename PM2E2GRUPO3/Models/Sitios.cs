@@ -8,15 +8,12 @@ namespace PM2E2GRUPO3.Models
 {
     public class Sitios{
         private List<string> invalidData = new List<string>();
-        //private byte[] firma;
         private byte[] video;
         private byte[] audio;
         private double latitud;
         private double longitud;
 
-        //public Datos(byte[] firma, byte[] audio, double latitud, double longitud) {
         public Sitios(byte[] video, byte[] audio, double latitud, double longitud) {
-            //this.Firma = firma;
             this.Video = video;
             this.Audio = audio;
             this.Latitud = latitud;
@@ -27,17 +24,14 @@ namespace PM2E2GRUPO3.Models
             return this.invalidData;
         }
 
-        //public byte[] Firma {
-        //    get { return this.firma; }
 
-        //    set {
-        //        if (value != null && value.Length > 0) {
-        //            this.firma = value;
-        //        } else {
-        //            this.invalidData.Add("No ha dibujado la firma.");
-        //        }
-        //    }
-        //}
+
+
+
+
+        public int Id {  get; set; }
+
+
 
         public byte[] Video {
             get { return this.video; }
@@ -46,7 +40,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.video = value;
                 } else {
-                    this.invalidData.Add("¡Atención! No hay grabación de vídeo.");
+                    this.invalidData.Add("No hay grabación de vídeo.");
                 }
             }
         }
@@ -58,7 +52,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != null && value.Length > 0) {
                     this.audio = value;
                 } else {
-                    this.invalidData.Add("¡Atención! No hay grabación de audio.");
+                    this.invalidData.Add("No hay grabación de audio.");
                 }
             }
         }
@@ -70,7 +64,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != 0.0) {
                     this.latitud = value;
                 } else {
-                    this.invalidData.Add("¡Atención! No se generó valor de latitud.");
+                    this.invalidData.Add("No se generó valor de latitud.");
                 }
             }
         }
@@ -82,7 +76,7 @@ namespace PM2E2GRUPO3.Models
                 if (value != 0.0) {
                     this.longitud = value;
                 } else {
-                    this.invalidData.Add("¡Atención! No se generó valor de longitud."); ;
+                    this.invalidData.Add("No se generó valor de longitud.");
                 }
             }
         }

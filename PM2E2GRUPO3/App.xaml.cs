@@ -6,7 +6,8 @@ namespace PM2E2GRUPO3 {
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new MainPage(AudioManager.Current));
+            //MainPage = new NavigationPage(new MainPage(AudioManager.Current));
+            MainPage = new NavigationPage(new MainPage());
         }
     }
 }

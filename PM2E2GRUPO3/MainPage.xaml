@@ -2,87 +2,81 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Unloaded="ContentPage_Unloaded"
              x:Class="PM2E2GRUPO3.MainPage">
 
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Limpiar" IconImageSource="restart_ico" Clicked="OnBtnLimpiarClicked"/>
+    </ContentPage.ToolbarItems>
+    
+
     <ScrollView>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal" Padding="15,15,0,0">
-                <Label Margin="45,0,0,0"  Text="Nueva Ubicación" HorizontalTextAlignment="Center" TextColor="Green" FontAttributes="Bold" FontSize="15"/>
-                <Label Text=" | Ubicaciones Salvadas" HorizontalTextAlignment="Center" TextColor="LightGray" FontAttributes="Bold" FontSize="15"/>
-            </StackLayout>
-            <Image Source="uth.png" HeightRequest="100" WidthRequest="150" HorizontalOptions="Center" Margin="0,0,0,8"/>
+        <StackLayout Padding="15" Spacing="10" BackgroundColor="White">
             
-            <toolkit:MediaElement x:Name="videoElement"
-                ShouldShowPlaybackControls="True"
-                Aspect="AspectFill"
-                HeightRequest="225"/>
+            <Image Source="uth.png" HeightRequest="100" WidthRequest="150" HorizontalOptions="Center" Margin="0,0,0,8"/>
 
-            <Button x:Name="btnVideo" 
-                    Text="Grabar Video" 
-                    Clicked="OnBtnVideoClicked" 
-                    Margin="80,15,80,7" 
-                    BackgroundColor="#8bc34a" 
-                    CornerRadius="10" 
-                    TextColor="Black"/>
 
-            <Label Text="Latitud Actual:" FontSize="Subtitle" Margin="15,15,10,5" TextColor="Black" FontAttributes="Bold"/>
-            <Frame 
-                Margin="15,5,15,10" 
-                Padding="0">
-                <Entry Keyboard="Text" 
-                   x:Name="txtLatitud"
-                   MaxLength="100" 
-                    IsEnabled="False"
-                   FontSize="14"
-                   BackgroundColor="WhiteSmoke"/>
+            <Frame Padding="0">
+                <StackLayout>
+                    <toolkit:MediaElement x:Name="videoElement"
+                        ShouldShowPlaybackControls="True"
+                        Aspect="AspectFill"
+                        HeightRequest="225"/>
+
+                    <Button x:Name="btnVideo" 
+                        Text="Grabar Video" 
+                        Clicked="OnBtnVideoClicked" 
+                        BackgroundColor="#8bc34a" 
+                        CornerRadius="0"
+                        FontAttributes="Bold"/>
+                </StackLayout>
             </Frame>
 
-            <Label Text="Longitud Actual:" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Black" FontAttributes="Bold"/>
-            <Frame 
-                Margin="15,5,15,10" 
-                Padding="0">
-                <Entry Keyboard="Text" 
-                    x:Name="txtLongitud"
-                    MaxLength="100" 
-                    IsEnabled="False"
-                    FontSize="14"
-                    BackgroundColor="WhiteSmoke"/>
-            </Frame>
 
-            <Label Text="Describa la Ubicación" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Green" FontAttributes="Bold"/>
+
+            <StackLayout Spacing="5">
+                <StackLayout>
+                    <Label Text="Latitud Actual:" FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Frame Padding="0" CornerRadius="10">
+                        <Entry x:Name="txtLatitud" Keyboard="Text" IsEnabled="False" FontSize="14" BackgroundColor="WhiteSmoke"/>
+                    </Frame>
+                </StackLayout>
+            
+                <StackLayout>
+                    <Label Text="Longitud Actual:" FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Frame Padding="0" CornerRadius="10">
+                        <Entry x:Name="txtLongitud" Keyboard="Text" IsEnabled="False" FontSize="14" BackgroundColor="WhiteSmoke"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            
+            
 
             <StackLayout>
-                <Label Text="Grabar nota de Voz:" FontSize="Subtitle" Margin="20,5,10,5" TextColor="Black" FontAttributes="Bold"/>
+                <Label Text="Nota de Voz:" FontSize="Subtitle" FontAttributes="Bold"/>
                 <Button x:Name="btnBtnStartRecording"
                     ImageSource="microfonoa.png"
                     BorderWidth="5"
-                    Margin="100,15,100,7" 
                     BackgroundColor="#8bc34a" 
                     CornerRadius="10"
                     BorderColor="#8bc34a"
                     Clicked="OnBtnStartRecordingClicked"/>
             </StackLayout>
 
-            <StackLayout HorizontalOptions="CenterAndExpand" Margin="7,30,7,30">
-                <StackLayout Orientation="Vertical" Spacing="10">
-                    <Button Text="Salvar Ubicación" 
-                            x:Name="salvarU" 
-                            BackgroundColor="#FFD230" 
-                            CornerRadius="10" 
-                            TextColor="Black"  
-                            WidthRequest="290"
-                            Clicked="OnBtnGuardarClicked" />
 
-                    <Button Text="Ubicaciones Salvadas" 
-                            x:Name="ListaU" 
-                            BackgroundColor="#FFD230" 
-                            CornerRadius="10" 
-                            TextColor="Black" 
-                            WidthRequest="290"
-                            Clicked="OnBtnListaClicked" />
-                </StackLayout>
+
+
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="5" Orientation="Vertical" Margin="0, 20, 0,0">
+                <Button x:Name="salvarU" Text="Salvar Ubicación" Clicked="OnBtnGuardarClicked"
+                        BackgroundColor="#FFD230" 
+                        CornerRadius="10"/>
+
+                <Button x:Name="ListaU" Text="Ubicaciones Salvadas" Clicked="OnBtnListaClicked"
+                        BackgroundColor="#FFD230" 
+                        CornerRadius="10" />
             </StackLayout>
+            
+            
         </StackLayout>
     </ScrollView>
 
