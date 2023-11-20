@@ -17,16 +17,16 @@ public partial class MapaView : ContentPage
     protected override void OnAppearing() {
         base.OnAppearing();
 
-        //Location locacion = new Location(pais.latlng[0], pais.latlng[1]);
+        Location locacion = new Location(sitio.Latitud, sitio.Longitud);
 
-        //mapa.Pins.Add(new Pin {
-        //    Label = pais.name.official,
-        //    Address = "Area: " + pais.area + " km^2",
-        //    Location = locacion,
-        //    Type = PinType.Place
-        //}); ;
+        mapa.Pins.Add(new Pin {
+            Label = "Nombre Registro: " + sitio.Descripcion,
+            Address = "Id de Registro: " + sitio.Id.ToString(),
+            Location = locacion,
+            Type = PinType.Place
+        }); ; ;
 
-        ////mapa.MapType = MapType.Satellite;
-        //mapa.MoveToRegion(new MapSpan(locacion, 0.1, 0.1));
+        //mapa.MapType = MapType.Satellite;
+        mapa.MoveToRegion(new MapSpan(locacion, 0.1, 0.1));
     }
 }

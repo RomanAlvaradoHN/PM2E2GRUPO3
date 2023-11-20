@@ -7,15 +7,43 @@
     
     
     
-    <VerticalStackLayout Padding="10">
+    <StackLayout Padding="10" Spacing="10">
         
         <toolkit:MediaElement x:Name="videoElement"
             ShouldShowPlaybackControls="True"
-            ShouldAutoPlay="True"      
+            ShouldAutoPlay="False"
             Aspect="AspectFill"
-            VerticalOptions="FillAndExpand"/>
-        
-        
-        
-    </VerticalStackLayout>
+            VerticalOptions="StartAndExpand"/>
+
+
+        <StackLayout>
+            <Label Text="Audio:" TextColor="white" FontSize="Large" FontAttributes="Bold"/>
+            <Button x:Name="btnPlayAudio"
+                ImageSource="play_ico.png"
+                BackgroundColor="#8bc34a"
+                Clicked="OnBtnPlayClicked"/>
+        </StackLayout>
+
+
+
+        <StackLayout VerticalOptions="EndAndExpand" Spacing="5" Margin="0, 20, 0,0">
+            <Button x:Name="btnVerMapa" Clicked="OnBtnMapaClicked"
+                ImageSource="map_ico.png"
+                BackgroundColor="#FFD230"
+                HorizontalOptions="FillAndExpand"/>
+
+            <Button x:Name="btnEditar" Text="Editar" Clicked="OnBtnEditarClicked"
+                ImageSource="edit_ico.png"
+                BackgroundColor="DeepSkyBlue"
+                HorizontalOptions="FillAndExpand"/>
+
+            <Button x:Name="btnEliminar" Clicked="OnBtnEliminarClicked"
+                ImageSource="delete_ico.png"
+                BackgroundColor="red"
+                HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+
+
+    </StackLayout>
 </ContentPage>

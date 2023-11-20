@@ -1,17 +1,18 @@
 using PM2E2GRUPO3.Controllers;
+using PM2E2GRUPO3.Models;
 using System.Data;
+using System.Windows.Input;
 
 namespace PM2E2GRUPO3.Views;
 
-public partial class Listado : ContentPage
-{
+public partial class Listado : ContentPage {
     Api api;
 
 
 
 
-	public Listado(){
-		InitializeComponent();
+    public Listado() {
+        InitializeComponent();
         api = new Api();
     }
 
@@ -29,7 +30,7 @@ public partial class Listado : ContentPage
 
 
     private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args) {
-        //Pais p = args.SelectedItem as Pais;
-        //await Navigation.PushAsync(new MapaView(p));
+        Sitios sitio = args.SelectedItem as Sitios;
+        await Navigation.PushAsync(new PlayMedia(sitio));
     }
 }
