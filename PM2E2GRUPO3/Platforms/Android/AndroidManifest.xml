@@ -6,7 +6,12 @@
 		android:icon="@mipmap/appicon"
 		android:roundIcon="@mipmap/appicon_round"
 		android:supportsRtl="true"
-		android:usesCleartextTraffic="true"/>
+		android:usesCleartextTraffic="true">
+
+		<!--Uso de Mapa: https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/map?view=net-maui-7.0-->
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCLVz9r_wWtOwc0tfeiohhjI40lU6YM6OA" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+	</application>
 	
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />

@@ -7,6 +7,7 @@ using PM2E2GRUPO3.Views;
 namespace PM2E2GRUPO3 {
     public partial class MainPage : ContentPage 
     {
+        private Api api = new Api();
         private Location locacion = new Location();
         private AudioRecorder ar = new AudioRecorder();
         private byte[] videoArray = new byte[0];
@@ -108,7 +109,7 @@ namespace PM2E2GRUPO3 {
                 );
 
                 if (!datos.GetDatosInvalidos().Any()){
-                    await DisplayAlert("Guardar", "Datos guardados!", "Aceptar");
+                    await api.Insert(datos);
                     LimpiarCampos();
                 
                 }else {

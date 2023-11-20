@@ -12,7 +12,7 @@ namespace PM2E2GRUPO3 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.UseMauiMaps();
             builder.UseMauiCommunityToolkit();
             builder.UseMauiCommunityToolkitMediaElement();
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E2GRUPO3.Views.PlayMedia"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Sitio">
+    
+    
+    
+    <VerticalStackLayout Padding="10">
+        
+        <toolkit:MediaElement x:Name="videoElement"
+            ShouldShowPlaybackControls="True"
+            ShouldAutoPlay="True"      
+            Aspect="AspectFill"
+            VerticalOptions="FillAndExpand"/>
+        
+        
+        
+    </VerticalStackLayout>
+</ContentPage>
