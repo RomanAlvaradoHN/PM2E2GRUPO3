@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using PM2E2GRUPO3.Models;
 using PM2E2GRUPO3.Controllers;
+using PM2E2GRUPO3.Views;
 
 
 namespace PM2E2GRUPO3 {
@@ -59,15 +60,17 @@ namespace PM2E2GRUPO3 {
 
 
 
+
+
         private async void OnBtnStartRecordingClicked(object sender, EventArgs args) {
             audioArray = await ar.Grabar_o_Detener();
 
             if (!ar.GetErrors().Any()) {
                 if (ar.IsRecording()) {
-                    SetButtonStyle(Color.FromArgb("#F0394D"), "microfonoam.png");
+                    SetButtonStyle(Color.FromArgb("#F0394D"), "stop_ico.png");
 
                 } else {
-                    SetButtonStyle(Color.FromArgb("#8BC34A"), "donea.png");
+                    SetButtonStyle(Color.FromArgb("#8BC34A"), "done_ico.png");
                 }
             
             } else {
@@ -126,7 +129,7 @@ namespace PM2E2GRUPO3 {
 
 
         public async void OnBtnListaClicked(object sender, EventArgs args){
-            //await Navigation.PushAsync(new Listado());
+            await Navigation.PushAsync(new Listado());
         }
 
 
@@ -139,7 +142,6 @@ namespace PM2E2GRUPO3 {
 
         private void SetButtonStyle(Color color, string imageName) {
             btnBtnStartRecording.BackgroundColor = color;
-            btnBtnStartRecording.BorderColor = color;
             btnBtnStartRecording.ImageSource = new FileImageSource().File = imageName;
         }
 
@@ -155,7 +157,7 @@ namespace PM2E2GRUPO3 {
             txtLatitud.Text = string.Empty;
             txtLongitud.Text = string.Empty;
             ar.Detener();
-            SetButtonStyle(Color.FromArgb("#8BC34A"), "microfonoa.png");
+            SetButtonStyle(Color.FromArgb("#8BC34A"), "microphone_ico.png");
         }
     }
 }

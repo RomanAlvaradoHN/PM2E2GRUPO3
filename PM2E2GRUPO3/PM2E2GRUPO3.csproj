@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\restart_ico.svg" />
 	  <None Remove="Resources\Images\stop_ico.svg" />
 	  <None Remove="Resources\Images\uth.png" />
+	  <None Remove="Resources\Images\video_ico.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,7 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <MauiXaml Update="Views\Listado.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

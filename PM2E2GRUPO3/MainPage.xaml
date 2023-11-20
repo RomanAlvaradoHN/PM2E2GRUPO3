@@ -11,7 +11,7 @@
     
 
     <ScrollView>
-        <StackLayout Padding="15" Spacing="10" BackgroundColor="White">
+        <StackLayout Padding="15" Spacing="10" BackgroundColor="white">
             
             <Image Source="uth.png" HeightRequest="100" WidthRequest="150" HorizontalOptions="Center" Margin="0,0,0,8"/>
 
@@ -24,8 +24,8 @@
                         HeightRequest="225"/>
 
                     <Button x:Name="btnVideo" 
-                        Text="Grabar Video" 
-                        Clicked="OnBtnVideoClicked" 
+                        ImageSource="video_ico.png"
+                        Clicked="OnBtnVideoClicked"
                         BackgroundColor="#8bc34a" 
                         CornerRadius="0"
                         FontAttributes="Bold"/>
@@ -36,14 +36,14 @@
 
             <StackLayout Spacing="5">
                 <StackLayout>
-                    <Label Text="Latitud Actual:" FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Label Text="Latitud:" FontSize="Subtitle" FontAttributes="Bold"/>
                     <Frame Padding="0" CornerRadius="10">
                         <Entry x:Name="txtLatitud" Keyboard="Text" IsEnabled="False" FontSize="14" BackgroundColor="WhiteSmoke"/>
                     </Frame>
                 </StackLayout>
             
                 <StackLayout>
-                    <Label Text="Longitud Actual:" FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Label Text="Longitud:" FontSize="Subtitle" FontAttributes="Bold"/>
                     <Frame Padding="0" CornerRadius="10">
                         <Entry x:Name="txtLongitud" Keyboard="Text" IsEnabled="False" FontSize="14" BackgroundColor="WhiteSmoke"/>
                     </Frame>
@@ -55,25 +55,24 @@
             <StackLayout>
                 <Label Text="Nota de Voz:" FontSize="Subtitle" FontAttributes="Bold"/>
                 <Button x:Name="btnBtnStartRecording"
-                    ImageSource="microfonoa.png"
-                    BorderWidth="5"
-                    BackgroundColor="#8bc34a" 
-                    CornerRadius="10"
-                    BorderColor="#8bc34a"
+                    ImageSource="microphone_ico.png"
+                    BackgroundColor="#8bc34a"
                     Clicked="OnBtnStartRecordingClicked"/>
             </StackLayout>
 
 
 
 
-            <StackLayout VerticalOptions="EndAndExpand" Spacing="5" Orientation="Vertical" Margin="0, 20, 0,0">
-                <Button x:Name="salvarU" Text="Salvar Ubicación" Clicked="OnBtnGuardarClicked"
-                        BackgroundColor="#FFD230" 
-                        CornerRadius="10"/>
-
-                <Button x:Name="ListaU" Text="Ubicaciones Salvadas" Clicked="OnBtnListaClicked"
-                        BackgroundColor="#FFD230" 
-                        CornerRadius="10" />
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="5" Orientation="Horizontal" Margin="0, 20, 0,0">
+                <Button x:Name="salvarU" Text="Guardar" Clicked="OnBtnGuardarClicked"
+                    ImageSource="guardar_ico.png"
+                    BackgroundColor="#FFD230"
+                    HorizontalOptions="FillAndExpand"/>
+                
+                <Button x:Name="ListaU" Text="Lista" Clicked="OnBtnListaClicked"
+                    ImageSource="lista_ico.png"
+                    BackgroundColor="#FFD230"
+                    HorizontalOptions="FillAndExpand"/>
             </StackLayout>
             
             
