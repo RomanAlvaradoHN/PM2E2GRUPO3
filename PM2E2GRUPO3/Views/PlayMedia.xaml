@@ -29,10 +29,10 @@
         <StackLayout VerticalOptions="EndAndExpand" Spacing="5" Margin="0, 20, 0,0">
             <Button x:Name="btnVerMapa" Clicked="OnBtnMapaClicked"
                 ImageSource="map_ico.png"
-                BackgroundColor="#FFD230"
+                BackgroundColor="DeepSkyBlue"
                 HorizontalOptions="FillAndExpand"/>
 
-            <Button x:Name="btnEditar" Text="Editar" Clicked="OnBtnEditarClicked"
+            <Button x:Name="btnEditar" Clicked="OnBtnEditarClicked"
                 ImageSource="edit_ico.png"
                 BackgroundColor="DeepSkyBlue"
                 HorizontalOptions="FillAndExpand"/>

@@ -70,7 +70,7 @@ public partial class PlayMedia : ContentPage
 
 
     private async void OnBtnEditarClicked(object sender, EventArgs args) {
-        //nada aun
+        await DisplayAlert("Editar", "No nos alcanzó el tiempo", "Aceptar");
     }
 
 
