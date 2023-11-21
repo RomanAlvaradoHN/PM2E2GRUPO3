@@ -47,6 +47,7 @@ namespace PM2E2GRUPO3.Controllers {
                 }
 
             }catch(Exception ex) {
+                Console.WriteLine(ex.Message);
                 return new byte[0];
             }
         }
