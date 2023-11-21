@@ -75,9 +75,9 @@ public partial class PlayMedia : ContentPage
 
 
     private async void OnBtnEliminarClicked(object sender, EventArgs args) {
+
         if(await api.Delete(sitio.Id)) {
             await DisplayAlert("Eliminar", "Registro eliminado.", "Aceptar");
-            await Navigation.PopAsync();
 
         } else {
             await DisplayAlert("Eliminar", "Algo salió mal", "Aceptar");

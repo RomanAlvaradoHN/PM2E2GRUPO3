@@ -107,17 +107,12 @@ namespace PM2E2GRUPO3 {
                 );
 
                 if (!datos.GetDatosInvalidos().Any()){
-                    await Navigation.PushAsync(new ModalOcupado("Guardando Datos"), true);
-
-
                     if (await api.Insert(datos)) {
-                        await Navigation.PopAsync(true);
                         await DisplayAlert("Guardar", "Datos guardados.", "Aceptar");
                         LimpiarCampos();
 
                     } else {
                         await DisplayAlert("Guardar", "Algo salió mal, los datos no se pudieron guardar.", "Aceptar");
-                        await Navigation.PopAsync(true);
                     }
                     
                     
