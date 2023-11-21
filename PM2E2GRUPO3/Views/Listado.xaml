@@ -10,7 +10,7 @@
 
 
 
-    <ListView x:Name="viewListado" SelectionMode="Single" BackgroundColor="black" ItemSelected="OnItemSelected" RowHeight="80">
+    <ListView x:Name="viewListado" SelectionMode="Single" ItemSelected="OnItemSelected" RowHeight="80">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ImageCell

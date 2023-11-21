@@ -24,7 +24,9 @@ public partial class Listado : ContentPage {
 
     protected async override void OnAppearing() {
         base.OnAppearing();
+        viewListado.Header = "Cargando...";
         viewListado.ItemsSource = await api.SelectAll();
+        viewListado.Header = string.Empty;
     }
 
 

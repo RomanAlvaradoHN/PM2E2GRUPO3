@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 namespace PM2E2GRUPO3.Controllers
 {
     public class LocationRecorder{
-        private PermissionStatus permiso;
         private CancellationTokenSource _cancelTokenSource;
         private bool _isCheckingLocation;
 
-        public LocationRecorder() {
-        }
-
+        
+        public LocationRecorder() {}
 
 
 
@@ -24,15 +22,24 @@ namespace PM2E2GRUPO3.Controllers
         //Obtiene las coordenadas ===================================================================================
         public async Task<Location> GetLocacion() {
             try {
-                _isCheckingLocation = true;
-                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
-                _cancelTokenSource = new CancellationTokenSource();
+                if (await PermisoLocacion()) {
+                    _isCheckingLocation = true;
+                    GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Low, TimeSpan.FromSeconds(5));
+                    _cancelTokenSource = new CancellationTokenSource();
 
-                return await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
+                    return await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
+                
+                } else {
+                    Console.WriteLine("No hay permisos de locacion");
+                    return new Location();
+                }
+
+                
 
 
             } catch (Exception ex) {
-                    return new Location();
+                Console.WriteLine(ex.Message);
+                return new Location();
 
             } finally {
                     _isCheckingLocation = false;
@@ -53,14 +60,22 @@ namespace PM2E2GRUPO3.Controllers
 
 
 
-        private async void ValidarPermisoLocacion() {
-            this.permiso = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+        private async Task<bool> PermisoLocacion() {
+            PermissionStatus locationAlways = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+            PermissionStatus locationWhenIUse = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
-            if (this.permiso == PermissionStatus.Granted) {
-                return;
+            if (locationAlways != PermissionStatus.Granted) {
+                locationAlways = await Permissions.RequestAsync<Permissions.LocationAlways>();
+            }
 
+            if (locationWhenIUse != PermissionStatus.Granted) {
+                locationWhenIUse = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
+
+            if(locationAlways == PermissionStatus.Granted && locationWhenIUse == PermissionStatus.Granted) {
+                return true;
             } else {
-                this.permiso = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+                return false;
             }
         }
 
